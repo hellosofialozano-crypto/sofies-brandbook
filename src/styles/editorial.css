@@ -1,0 +1,86 @@
+:root {
+
+  /* Editorial surfaces */
+
+  --maison-paper: #FCFAF7;
+  --maison-ivory: #F8F5F0;
+
+  /* Editorial accents */
+
+  --maison-rose: #E6C6C2;
+  --maison-blush: #F2DEDA;
+  --maison-champagne: #C8B08A;
+
+  /* Typography */
+
+  --font-display:
+    "Cormorant Garamond",
+    serif;
+
+  --font-body:
+    "Inter",
+    sans-serif;
+
+  --font-mono:
+    "JetBrains Mono",
+    monospace;
+
+
+  /* Layout */
+
+  --content-width: 720px;
+  --wide-width: 1200px;
+
+
+  /* Editorial rhythm */
+
+  --space-section: 160px;
+  --space-page: 64px;
+}
+
+
+body {
+
+  background:
+    var(--maison-paper);
+
+  color:
+    #111111;
+
+  font-family:
+    var(--font-body);
+
+  letter-spacing:
+    -0.01em;
+}
+
+
+h1,
+h2,
+h3 {
+
+  font-family:
+    var(--font-display);
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -0.03em;
+}
+
+
+.editorial-caption {
+
+  font-size:
+    12px;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.18em;
+
+  opacity:
+    0.6;
+}
