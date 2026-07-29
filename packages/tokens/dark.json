@@ -1,0 +1,19 @@
+{
+  "theme": "dark",
+
+  "surface": {
+    "primary": "{color.neutral.1000}",
+    "secondary": "{color.neutral.900}",
+    "inverse": "{color.neutral.0}"
+  },
+
+  "text": {
+    "primary": "{color.neutral.0}",
+    "secondary": "{color.neutral.300}",
+    "inverse": "{color.neutral.900}"
+  },
+
+  "border": {
+    "default": "{color.neutral.700}"
+  }
+}
