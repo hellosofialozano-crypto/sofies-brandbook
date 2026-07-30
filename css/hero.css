@@ -1,0 +1,63 @@
+/* ==========================
+   HERO
+========================== */
+
+#hero{
+
+    width:100%;
+    height:100vh;
+
+    background-color:#F7F2F0;
+
+    background-image:url("../media/section1.png");
+    background-repeat:no-repeat;
+    background-position:center top;
+    background-size:contain;
+
+}
+
+/* ==========================
+   DESKTOP
+========================== */
+
+@media (min-width:1200px){
+
+    #hero{
+
+        background-size:auto 100%;
+
+    }
+
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:1199px){
+
+    #hero{
+
+        background-size:contain;
+
+    }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:768px){
+
+    #hero{
+
+        height:100svh;
+
+        background-position:center top;
+
+        background-size:100% auto;
+
+    }
+
+}
