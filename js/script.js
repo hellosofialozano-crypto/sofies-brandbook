@@ -1,30 +1,51 @@
-const gloss = document.getElementById('gloss');
+// Seção 1 do brandbook — parallax sutil no fundo.
+// Desktop (mouse): a imagem segue o cursor levemente.
+// Celular/touch (sem mouse): leve deriva ambiente automática,
+// só pra imagem não ficar "morta" — sem pedir permissão de
+// giroscópio, que exige gesto do usuário no iOS.
 
-if (gloss && matchMedia('(hover:hover)').matches) {
-  let x = window.innerWidth / 2, y = window.innerHeight / 2;
-  let gx = x, gy = y;
+(function () {
+  const bg = document.querySelector(".section1__bg");
+  const stage = document.querySelector(".section1");
+  if (!bg || !stage) return;
 
-  window.addEventListener('mousemove', (e) => {
-    x = e.clientX;
-    y = e.clientY;
-  });
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  const MAX_PX = 14; // deslocamento máximo em px
+
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
 
   function loop() {
-    gx += (x - gx) * 0.18;
-    gy += (y - gy) * 0.18;
-    gloss.style.transform = `translate(${gx}px, ${gy}px) translate(-50%,-50%)`;
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+    bg.style.transform =
+      "scale(1.06) translate(" + currentX.toFixed(2) + "px, " + currentY.toFixed(2) + "px)";
     requestAnimationFrame(loop);
   }
-  loop();
+  requestAnimationFrame(loop);
 
-  document.querySelectorAll('a, .tile, .swatch').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      gloss.style.width = '70px';
-      gloss.style.height = '70px';
+  const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+  if (hasFinePointer) {
+    stage.addEventListener("mousemove", function (e) {
+      const rect = stage.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width - 0.5;
+      const relY = (e.clientY - rect.top) / rect.height - 0.5;
+      targetX = -relX * MAX_PX * 2;
+      targetY = -relY * MAX_PX * 2;
     });
-    el.addEventListener('mouseleave', () => {
-      gloss.style.width = '38px';
-      gloss.style.height = '38px';
+    stage.addEventListener("mouseleave", function () {
+      targetX = 0;
+      targetY = 0;
     });
-  });
-}
+  } else {
+    let t = 0;
+    setInterval(function () {
+      t += 0.015;
+      targetX = Math.sin(t) * (MAX_PX * 0.5);
+      targetY = Math.cos(t * 0.8) * (MAX_PX * 0.35);
+    }, 50);
+  }
+})();
