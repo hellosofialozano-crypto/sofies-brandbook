@@ -9,21 +9,36 @@
 html, body{
   margin:0;
   padding:0;
+  height:100%;
   background:#0d0b0a;
   color:var(--ink);
   font-family: var(--sans);
 }
 
+/* ---------- Palco fullscreen ----------
+   Ocupa a tela inteira e recorta (overflow:hidden) o que
+   sobrar da seção, em qualquer proporção de tela. */
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100vw;
+  height:100svh;
+  overflow:hidden;
+}
+
 /* ---------- Container mestre ----------
-   Mantém a proporção exata da imagem (1109 x 1419)
-   e usa unidades de container (cqw) para que TODO
-   o texto escale junto com a imagem, em qualquer tela. */
+   Mantém a proporção exata da imagem (941 x 1672) e
+   usa a mesma matemática do "background-size:cover" para
+   que a seção sempre preencha 100% da tela (largura OU
+   altura, o que precisar crescer mais), sem nunca deformar.
+   Como o texto usa unidades de container (cqw), ele escala
+   junto com a imagem e nunca perde o alinhamento. */
 .section1{
   position:relative;
-  width:100%;
-  max-width:941px;
-  margin:0 auto;
-  aspect-ratio: 941 / 1672;
+  flex-shrink:0;
+  width: max(100vw, 100svh * (941 / 1672));
+  height: max(100svh, 100vw * (1672 / 941));
   overflow:hidden;
   container-type: inline-size;
   background:#f4ede8;
