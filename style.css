@@ -1,232 +1,362 @@
+/* =======================================
+   SOFI'ES BRANDBOOK
+   SECTION 01
+======================================= */
+
 :root{
 
-    --cream:#FBF3EC;
-    --pink:#E8557A;
-    --red:#B31C3C;
-    --ink:#111111;
-    --white:#FFFFFF;
+    --bg:#F4E6E7;
+    --text:#171414;
+    --line:rgba(23,20,20,.28);
 
 }
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
 
-html,
+html{
+
+    scroll-behavior:smooth;
+
+}
+
 body{
 
-    width:100%;
-    height:100%;
-    overflow:hidden;
+    background:var(--bg);
 
-    background:#000;
+    color:var(--text);
 
-    font-family:"Instrument Sans",sans-serif;
+    font-family:"Inter",sans-serif;
+
+    overflow-x:hidden;
 
 }
+
+/* ========================= */
 
 .hero{
 
     position:relative;
 
-    width:100vw;
-    height:100vh;
+    width:100%;
+
+    min-height:100vh;
+
+    background:var(--bg);
 
     overflow:hidden;
 
 }
 
-.hero-video{
+/* ========================= */
+
+.hero-image{
 
     position:absolute;
 
-    inset:0;
+    left:50%;
 
-    width:100%;
-    height:100%;
+    top:50%;
 
-    object-fit:cover;
+    transform:translate(-50%,-50%);
+
+    width:42vw;
+
+    max-width:700px;
+
+    min-width:420px;
 
     z-index:1;
 
 }
 
-.hero-overlay{
+/* ========================= */
+
+.logo{
 
     position:absolute;
 
-    inset:0;
+    top:35px;
 
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.35),
-            rgba(0,0,0,.10),
-            rgba(0,0,0,.15)
-        );
+    left:60px;
 
-    z-index:2;
+    z-index:10;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:8rem;
+
+    font-weight:900;
+
+    letter-spacing:-6px;
+
+    line-height:.9;
 
 }
 
 /* ========================= */
-/* TYPOGRAPHY */
-/* ========================= */
 
-.editorial{
+.top-right{
 
     position:absolute;
 
-    inset:0;
+    top:55px;
 
-    z-index:5;
+    right:60px;
 
-    pointer-events:none;
+    z-index:10;
 
-}
+    display:flex;
 
-.word{
+    flex-direction:column;
 
-    position:absolute;
+    gap:8px;
 
-    opacity:0;
-
-    filter:blur(8px);
-
-    transition:.8s;
-
-    white-space:nowrap;
-
-    color:white;
-
-}
-
-.bodoni{
-
-    font-family:"Bodoni Moda",serif;
-
-}
-
-.sans{
-
-    font-family:"Instrument Sans",sans-serif;
-
-    letter-spacing:.35em;
+    text-align:right;
 
     text-transform:uppercase;
 
+    font-size:.75rem;
+
+    letter-spacing:.28em;
+
+    font-weight:600;
+
 }
 
-.script{
+.top-right::after{
 
-    font-family:"Petit Formal Script",cursive;
+    content:"";
+
+    width:1px;
+
+    height:70px;
+
+    background:var(--line);
+
+    margin-left:auto;
+
+    margin-top:10px;
 
 }
 
 /* ========================= */
-/* FINAL COPY */
-/* ========================= */
 
-.ending-copy{
+.left-content{
 
     position:absolute;
 
-    right:70px;
-    bottom:60px;
+    left:70px;
 
-    z-index:20;
+    top:180px;
 
-    color:white;
+    width:320px;
 
-    text-align:left;
-
-    opacity:0;
+    z-index:10;
 
 }
 
-.copy-line-01{
+.eyebrow{
 
-    font-size:18px;
+    text-transform:uppercase;
 
-    font-family:"Bodoni Moda",serif;
+    letter-spacing:.25em;
 
-    font-style:italic;
+    font-size:.75rem;
+
+    font-weight:600;
+
+    margin-bottom:14px;
+
+}
+
+.left-content h2{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:3.2rem;
+
+    line-height:1;
+
+    margin-bottom:22px;
+
+}
+
+.left-content p{
+
+    line-height:1.8;
+
+    font-size:.95rem;
+
+}
+
+/* ========================= */
+
+.services{
+
+    position:absolute;
+
+    left:70px;
+
+    bottom:70px;
+
+    width:260px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:32px;
+
+    z-index:10;
+
+}
+
+.services h3{
+
+    font-size:.9rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
 
     margin-bottom:8px;
 
 }
 
-.copy-line-02{
+.services p{
 
-    font-size:14px;
+    font-size:.85rem;
 
-    font-family:"Instrument Sans",sans-serif;
+    line-height:1.7;
 
-    letter-spacing:.08em;
-
-    opacity:.88;
+    opacity:.8;
 
 }
 
 /* ========================= */
-/* INDEX */
-/* ========================= */
 
-.index-button{
+.center-copy{
 
     position:absolute;
 
-    top:42px;
-    right:42px;
+    left:50%;
 
-    z-index:30;
+    transform:translateX(-50%);
 
-    border:none;
+    bottom:120px;
 
-    background:none;
+    width:420px;
 
-    color:white;
+    z-index:10;
 
-    cursor:pointer;
+}
 
-    font-size:13px;
+.center-copy h2{
 
-    letter-spacing:.35em;
+    font-family:"Playfair Display",serif;
+
+    font-size:2.6rem;
+
+    line-height:1.05;
+
+    margin-bottom:18px;
+
+}
+
+.center-copy p:last-child{
+
+    line-height:1.8;
+
+    opacity:.82;
+
+}
+
+/* ========================= */
+
+.right-copy{
+
+    position:absolute;
+
+    right:70px;
+
+    top:420px;
+
+    width:260px;
+
+    z-index:10;
+
+}
+
+.right-copy h2{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:2rem;
+
+    line-height:1.1;
+
+    margin-bottom:18px;
+
+}
+
+.right-copy p:last-child{
+
+    line-height:1.7;
+
+    opacity:.82;
+
+}
+
+/* ========================= */
+
+.quote{
+
+    position:absolute;
+
+    right:70px;
+
+    bottom:150px;
+
+    width:230px;
+
+    font-family:"Playfair Display",serif;
+
+    font-style:italic;
+
+    font-size:1.2rem;
+
+    line-height:1.7;
+
+    z-index:10;
+
+}
+
+/* ========================= */
+
+footer{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    bottom:28px;
 
     text-transform:uppercase;
 
-    font-family:"Instrument Sans",sans-serif;
+    letter-spacing:.25em;
 
-    transition:.35s;
+    font-size:.72rem;
 
-}
+    font-weight:600;
 
-.index-button:hover{
-
-    opacity:.6;
-
-}
-
-/* ========================= */
-/* RESPONSIVO */
-/* ========================= */
-
-@media(max-width:768px){
-
-    .index-button{
-
-        top:24px;
-        right:24px;
-
-    }
-
-    .ending-copy{
-
-        right:24px;
-        bottom:28px;
-
-    }
+    white-space:nowrap;
 
 }
