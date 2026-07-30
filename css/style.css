@@ -279,154 +279,177 @@ body{
    EFEITOS
    ========================================================= */
 
-/* =========================================================
-   PARALLAX PREMIUM
-   ========================================================= */
-
-.section1{
-    overflow:hidden;
-    perspective:1200px;
-    transform-style:preserve-3d;
+/* ---------- Preloader ----------
+   Cobre a tela até a imagem carregar de verdade + um tempo
+   mínimo, pra nunca "piscar" rápido demais em conexões boas.
+   O JS controla a % e o fade-out (classe .is-done). */
+.preloader{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1.1em;
+  background:#0d0b0a;
+  color:#f4ede8;
+  transition:opacity .7s cubic-bezier(.16,1,.3,1);
+}
+.preloader__word{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(1.3rem, 4vw, 2.2rem);
+  letter-spacing:0.03em;
+}
+.preloader__bar{
+  width:min(200px, 42vw);
+  height:1px;
+  background:rgba(244,237,232,0.22);
+  position:relative;
+  overflow:hidden;
+}
+.preloader__bar-fill{
+  position:absolute;
+  inset:0 auto 0 0;
+  width:0%;
+  background:#f4ede8;
+}
+.preloader__pct{
+  font-family:var(--sans);
+  font-size:0.7rem;
+  font-weight:500;
+  letter-spacing:0.2em;
+  opacity:0.75;
+}
+.preloader.is-done{
+  opacity:0;
+  pointer-events:none;
 }
 
+/* ---------- Cursor customizado ----------
+   Só some o cursor do sistema em telas com mouse de verdade
+   (pointer:fine). Em touch, o navegador usa o cursor normal. */
+@media (pointer:fine){
+  html.has-custom-cursor, html.has-custom-cursor *{
+    cursor:none;
+  }
+}
+.cursor{
+  position:fixed;
+  top:0;
+  left:0;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#f4ede8;
+  mix-blend-mode:difference;
+  pointer-events:none;
+  z-index:998;
+  opacity:0;
+  transform:translate(-50%,-50%);
+  transition:width .3s cubic-bezier(.16,1,.3,1),
+             height .3s cubic-bezier(.16,1,.3,1),
+             opacity .3s ease;
+}
+.cursor.is-active{ opacity:1; }
+.cursor.is-hover{ width:34px; height:34px; }
+@media (pointer:coarse){ .cursor{ display:none; } }
+
+/* ---------- Efeito magnético ----------
+   Ícones e labels do rodapé "seguem" o cursor um pouco antes
+   mesmo do hover clássico. O deslocamento é aplicado via JS
+   direto no transform; aqui só garantimos a suavização. */
+[data-magnetic]{
+  transition:transform .2s cubic-bezier(.16,1,.3,1);
+}
+
+/* ---------- Parallax no fundo ----------
+   O scale(1.06) dá "sobra" de imagem pra JS deslocar a foto
+   sem nunca revelar as bordas do container. O deslocamento
+   em si é aplicado via JS (script.js). */
 .section1__bg{
-
-    position:absolute;
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    backface-visibility:hidden;
-    transform-origin:center center;
-
-    will-change:
-        transform,
-        filter;
-
-    filter:blur(0px);
-
+  transform:scale(1.06);
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+  will-change:transform;
 }
 
 /* ---------- Entrada em cascata ----------
-   Cada bloco nasce com opacidade 0 e sobe/desfoca levemente,
-   revelando a página como se fosse uma capa de revista se
-   montando. Os delays abaixo criam a ordem de leitura. */
+   Fica tudo invisível até o JS liberar (classe is-ready no
+   body), garantindo que a cascata só comece depois do
+   preloader sumir — não importa quanto tempo ele demorou. */
 @keyframes s1Reveal{
-  from{ opacity:0; transform:translateY(2.2cqw); filter:blur(12px); }
+  from{ opacity:0; transform:translateY(1.4cqw); filter:blur(6px); }
   to  { opacity:1; transform:translateY(0);       filter:blur(0); }
 }
 
 .s1-tags, .s1-intro, .s1-skills li, .s1-center,
-.s1-right-top, .s1-quote, .s1-footer{
+.s1-right-top, .s1-quote__mark, .s1-ia, .s1-subtext--right, .s1-footer{
   opacity:0;
+}
+
+body.is-ready .s1-tags, body.is-ready .s1-intro,
+body.is-ready .s1-skills li, body.is-ready .s1-center,
+body.is-ready .s1-right-top, body.is-ready .s1-quote__mark,
+body.is-ready .s1-ia, body.is-ready .s1-subtext--right,
+body.is-ready .s1-footer{
   animation:s1Reveal 1s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-.s1-tags       { animation-delay:.75s; }
-.s1-intro      { animation-delay:.95s; }
-.s1-center     { animation-delay:1.05s; }
-.s1-right-top  { animation-delay:1.20s; }
-.s1-quote      { animation-delay:1.40s; }
-.s1-footer     { animation-delay:1.60s; }
+body.is-ready .s1-tags       { animation-delay:.75s; }
+body.is-ready .s1-intro      { animation-delay:.95s; }
+body.is-ready .s1-center     { animation-delay:1.05s; }
+body.is-ready .s1-right-top  { animation-delay:1.20s; }
+body.is-ready .s1-quote__mark{ animation-delay:1.30s; }
+body.is-ready .s1-ia         { animation-delay:1.75s; }
+body.is-ready .s1-subtext--right{ animation-delay:1.90s; }
+body.is-ready .s1-footer     { animation-delay:1.60s; }
 
-.s1-skills li:nth-child(1){ animation-delay:1.15s; }
-.s1-skills li:nth-child(2){ animation-delay:1.30s; }
-.s1-skills li:nth-child(3){ animation-delay:1.45s; }
-.s1-skills li:nth-child(4){ animation-delay:1.60s; }
+body.is-ready .s1-skills li:nth-child(1){ animation-delay:1.15s; }
+body.is-ready .s1-skills li:nth-child(2){ animation-delay:1.30s; }
+body.is-ready .s1-skills li:nth-child(3){ animation-delay:1.45s; }
+body.is-ready .s1-skills li:nth-child(4){ animation-delay:1.60s; }
+
+/* ---------- Quote decodificando ----------
+   O texto some por trás de caracteres aleatórios e o JS vai
+   "acertando" letra por letra até formar a frase real —
+   nasce sempre visível (sem blur/fade) porque quem dá vida
+   a ele é a decodificação, não um fade comum. */
+.s1-quote__text{ opacity:1; }
+.decode-line{ display:inline-block; }
 
 /* ---------- Wordmark cinematográfico ----------
    O "SOFI'ES" nasce espaçado e desfocado, e "respira" até o
    letter-spacing final, como um título de abertura de revista. */
 @keyframes s1WordmarkIntro{
-  0%{
-    opacity:0;
-    transform:translateY(1.2cqw);
-    letter-spacing:.45em;
-    filter:blur(20px);
-  }
+  0%  { opacity:0; letter-spacing:.3em;   filter:blur(14px); }
   55% { opacity:1; }
-  100%{
-    opacity:1;
-    transform:translateY(0);
-    letter-spacing:-.01em;
-    filter:blur(0);
-  }
-.s1-wordmark{
-  opacity:0;
+  100%{ opacity:1; letter-spacing:-.01em; filter:blur(0); }
+}
+.s1-wordmark{ opacity:0; }
+body.is-ready .s1-wordmark{
   animation:s1WordmarkIntro 1.6s cubic-bezier(.16,1,.3,1) forwards;
   animation-delay:.15s;
 }
 
 /* ---------- Acessibilidade: respeita "menos movimento" ----------
    Quem tem essa preferência ligada no sistema vê a página
-   inteira, só que sem nenhuma animação/transição. */
+   inteira, só que sem nenhuma animação/transição/cursor
+   customizado/parallax. */
 @media (prefers-reduced-motion: reduce){
   .section1 *, .section1 *::after{
     animation:none !important;
     transition:none !important;
   }
   .s1-tags, .s1-wordmark, .s1-intro, .s1-skills li,
-  .s1-center, .s1-right-top, .s1-quote, .s1-footer{
+  .s1-center, .s1-right-top, .s1-quote__mark, .s1-ia,
+  .s1-subtext--right, .s1-footer{
     opacity:1 !important;
     filter:none !important;
     transform:none !important;
   }
   .section1__bg{ transform:none !important; }
-}
-/* =========================================================
-   GLOW SUAVE
-   ========================================================= */
-
-.section1::before{
-
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,.08),
-            transparent 60%
-        );
-
-    mix-blend-mode:soft-light;
-
-    opacity:.65;
-
-}
-
-/* =========================================================
-   VINHETA
-   ========================================================= */
-
-.section1::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-
-        radial-gradient(
-
-            circle,
-
-            transparent 45%,
-
-            rgba(0,0,0,.10) 100%
-
-        );
-
+  .preloader{ transition:none !important; }
+  .cursor{ display:none !important; }
 }
