@@ -1,5 +1,5 @@
 // Seção 1 do brandbook — preloader, cursor customizado,
-// parallax no fundo, efeito magnético e texto decodificando.
+// efeito magnético e texto decodificando.
 
 (function () {
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -148,51 +148,7 @@
   }
 
   /* =========================================================
-     4) PARALLAX NO FUNDO
-     Desktop: segue o mouse. Touch: deriva ambiente automática.
-     ========================================================= */
-  function initParallax() {
-    if (reduced) return;
-
-    var bg = document.querySelector(".section1__bg");
-    var stage = document.querySelector(".section1");
-    if (!bg || !stage) return;
-
-    var MAX_PX = 14;
-    var targetX = 0, targetY = 0, currentX = 0, currentY = 0;
-
-    function loop() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      bg.style.transform = "scale(1.06) translate(" + currentX.toFixed(2) + "px, " + currentY.toFixed(2) + "px)";
-      requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
-
-    if (hasFinePointer) {
-      stage.addEventListener("mousemove", function (e) {
-        var rect = stage.getBoundingClientRect();
-        var relX = (e.clientX - rect.left) / rect.width - 0.5;
-        var relY = (e.clientY - rect.top) / rect.height - 0.5;
-        targetX = -relX * MAX_PX * 2;
-        targetY = -relY * MAX_PX * 2;
-      });
-      stage.addEventListener("mouseleave", function () {
-        targetX = 0;
-        targetY = 0;
-      });
-    } else {
-      var t = 0;
-      setInterval(function () {
-        t += 0.015;
-        targetX = Math.sin(t) * (MAX_PX * 0.5);
-        targetY = Math.cos(t * 0.8) * (MAX_PX * 0.35);
-      }, 50);
-    }
-  }
-
-  /* =========================================================
-     5) TEXTO DECODIFICANDO
+     4) TEXTO DECODIFICANDO
      Cada linha da quote "monta" as letras a partir de
      caracteres aleatórios, revelando da esquerda pra direita.
      ========================================================= */
@@ -245,5 +201,4 @@
   initPreloader();
   initCursor();
   initMagnetic();
-  initParallax();
 })();
