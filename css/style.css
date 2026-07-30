@@ -10,20 +10,24 @@ html, body{
   margin:0;
   padding:0;
   height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
   background:#0d0b0a;
   color:var(--ink);
   font-family: var(--sans);
 }
 
 /* ---------- Palco fullscreen ----------
-   Ocupa a tela inteira e recorta (overflow:hidden) o que
-   sobrar da seção, em qualquer proporção de tela. */
+   Ocupa a tela inteira. Usa dvh (viewport dinâmica) em vez
+   de svh: assim, quando a barra do navegador esconde/aparece
+   no celular, o palco acompanha em tempo real e não sobra
+   nenhuma faixa da cor de fundo aparecendo embaixo. */
 body{
   display:flex;
   align-items:center;
   justify-content:center;
   width:100vw;
-  height:100svh;
+  height:100dvh;
   overflow:hidden;
 }
 
@@ -32,13 +36,15 @@ body{
    usa a mesma matemática do "background-size:cover" para
    que a seção sempre preencha 100% da tela (largura OU
    altura, o que precisar crescer mais), sem nunca deformar.
-   Como o texto usa unidades de container (cqw), ele escala
-   junto com a imagem e nunca perde o alinhamento. */
+   O fator 1.01 (overscan) estoura a seção 1% além do cálculo
+   exato, escondendo qualquer linha fina de arredondamento
+   nas bordas. Como o texto usa unidades de container (cqw),
+   ele escala junto com a imagem e nunca perde o alinhamento. */
 .section1{
   position:relative;
   flex-shrink:0;
-  width: max(100vw, 100svh * (941 / 1672));
-  height: max(100svh, 100vw * (1672 / 941));
+  width: calc(max(100vw, 100dvh * (941 / 1672)) * 1.01);
+  height: calc(max(100dvh, 100vw * (1672 / 941)) * 1.01);
   overflow:hidden;
   container-type: inline-size;
   background:#f4ede8;
