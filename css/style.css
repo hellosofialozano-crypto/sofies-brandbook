@@ -21,9 +21,9 @@ html, body{
 .section1{
   position:relative;
   width:100%;
-  max-width:1109px;
+  max-width:941px;
   margin:0 auto;
-  aspect-ratio: 1109 / 1419;
+  aspect-ratio: 941 / 1672;
   overflow:hidden;
   container-type: inline-size;
   background:#f4ede8;
