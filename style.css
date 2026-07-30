@@ -360,3 +360,213 @@ footer{
     white-space:nowrap;
 
 }
+
+/* =======================================
+   RESPONSIVO
+======================================= */
+
+@media (max-width:1200px){
+
+    .logo{
+
+        font-size:6rem;
+        left:40px;
+        top:30px;
+
+    }
+
+    .hero-image{
+
+        width:48vw;
+
+    }
+
+    .left-content{
+
+        left:40px;
+
+    }
+
+    .services{
+
+        left:40px;
+
+    }
+
+    .right-copy{
+
+        right:40px;
+
+    }
+
+    .top-right{
+
+        right:40px;
+
+    }
+
+}
+
+@media (max-width:900px){
+
+    .hero{
+
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+
+        padding:40px 30px 60px;
+
+    }
+
+    .logo,
+    .hero-image,
+    .left-content,
+    .services,
+    .center-copy,
+    .right-copy,
+    .quote,
+    .top-right,
+    footer{
+
+        position:relative;
+
+        inset:auto;
+
+        left:auto;
+        right:auto;
+        top:auto;
+        bottom:auto;
+
+        transform:none;
+
+    }
+
+    .logo{
+
+        font-size:4.8rem;
+
+        margin-bottom:30px;
+
+        text-align:center;
+
+        letter-spacing:-3px;
+
+    }
+
+    .top-right{
+
+        display:none;
+
+    }
+
+    .hero-image{
+
+        width:min(80vw,420px);
+
+        min-width:0;
+
+        margin-bottom:50px;
+
+    }
+
+    .left-content,
+    .center-copy,
+    .right-copy,
+    .services,
+    .quote{
+
+        width:100%;
+        max-width:520px;
+
+        margin-bottom:50px;
+
+    }
+
+    .left-content h2,
+    .center-copy h2{
+
+        font-size:2.5rem;
+
+    }
+
+    .right-copy h2{
+
+        font-size:2rem;
+
+    }
+
+    .services{
+
+        gap:28px;
+
+    }
+
+    footer{
+
+        margin-top:10px;
+
+        white-space:normal;
+
+        text-align:center;
+
+        line-height:1.8;
+
+        letter-spacing:.18em;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    body{
+
+        font-size:15px;
+
+    }
+
+    .logo{
+
+        font-size:3.4rem;
+
+    }
+
+    .hero{
+
+        padding:30px 22px 40px;
+
+    }
+
+    .hero-image{
+
+        width:88vw;
+
+    }
+
+    .left-content h2{
+
+        font-size:2.1rem;
+
+    }
+
+    .center-copy h2{
+
+        font-size:2rem;
+
+    }
+
+    .right-copy h2{
+
+        font-size:1.7rem;
+
+    }
+
+    .quote{
+
+        font-size:1rem;
+
+    }
+
+}
