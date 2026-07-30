@@ -11,6 +11,16 @@
 </head>
 <body>
 
+<!-- Preloader -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <span class="preloader__word">SOFI’ES</span>
+  <div class="preloader__bar"><div class="preloader__bar-fill" id="preloaderFill"></div></div>
+  <span class="preloader__pct" id="preloaderPct">0%</span>
+</div>
+
+<!-- Cursor customizado (só aparece em telas com mouse) -->
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
 <main class="section1" aria-label="Section 1 — Introduction">
   <img class="section1__bg" src="media/section-01.png" alt="">
 
@@ -35,22 +45,22 @@
 
   <!-- Left block: skills with icons -->
   <ul class="s1-skills">
-    <li>
+    <li data-magnetic data-magnetic-strength="14">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
       <h3>DATABASE</h3>
       <p>Modeling, organization, and analysis of data that create real value.</p>
     </li>
-    <li>
+    <li data-magnetic data-magnetic-strength="14">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3.5C6.5 3.5 5 5.5 5 7.5c0 1-.5 1.5-1 2.2C3.3 10.6 3 11.6 3 12.5c0 1.6 1 2.8 2.3 3.2.2 1.7 1.7 3 3.5 3 .5 0 1-.1 1.5-.3"/><path d="M15 3.5c2.5 0 4 2 4 4 0 1 .5 1.5 1 2.2.7.9 1 1.9 1 2.8 0 1.6-1 2.8-2.3 3.2-.2 1.7-1.7 3-3.5 3-.5 0-1-.1-1.5-.3"/><path d="M9 3.5c1.5 0 2.6 1 3 2M9 3.5v15c0 1 .8 2 2 2h1c1.2 0 2-1 2-2v-15"/></svg>
       <h3>AI &amp; MACHINE LEARNING</h3>
       <p>I build intelligent solutions with automation, prediction, and models that learn and evolve.</p>
     </li>
-    <li>
+    <li data-magnetic data-magnetic-strength="14">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8.5 6.5 3 12l5.5 5.5"/><path d="M15.5 6.5 21 12l-5.5 5.5"/></svg>
       <h3>FRONT END</h3>
       <p>Modern, intuitive, and responsive interfaces that connect people to solutions.</p>
     </li>
-    <li>
+    <li data-magnetic data-magnetic-strength="14">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="3.5" width="17" height="6" rx="1"/><rect x="3.5" y="14.5" width="17" height="6" rx="1"/><circle cx="7" cy="6.5" r=".6" fill="currentColor" stroke="none"/><circle cx="7" cy="17.5" r=".6" fill="currentColor" stroke="none"/></svg>
       <h3>BACK END</h3>
       <p>Robust architectures, APIs, and scalable systems that support big ideas.</p>
@@ -74,18 +84,23 @@
   <!-- Right block, bottom: quote -->
   <div class="s1-quote">
     <span class="s1-quote__mark" aria-hidden="true">&ldquo;</span>
-    <p class="s1-quote__text">CODE IS LOGIC.<br>DATA IS STORY.<br>I TURN BOTH<br>INTO REAL SOLUTIONS.</p>
+    <p class="s1-quote__text" id="decodeQuote">
+      <span class="decode-line">CODE IS LOGIC.</span><br>
+      <span class="decode-line">DATA IS STORY.</span><br>
+      <span class="decode-line">I TURN BOTH</span><br>
+      <span class="decode-line">INTO REAL SOLUTIONS.</span>
+    </p>
     <h2 class="s1-ia">A.I</h2>
     <p class="s1-subtext s1-subtext--right">INTELLIGENCE<br>THAT TRANSFORMS.</p>
   </div>
 
   <!-- Footer -->
   <div class="s1-footer">
-    <span>DATABASE</span>
-    <span>AI</span>
-    <span>FRONT END</span>
-    <span>BACK END</span>
-    <span>SOFTWARE ENGINEERING</span>
+    <span data-magnetic data-magnetic-strength="8">DATABASE</span>
+    <span data-magnetic data-magnetic-strength="8">AI</span>
+    <span data-magnetic data-magnetic-strength="8">FRONT END</span>
+    <span data-magnetic data-magnetic-strength="8">BACK END</span>
+    <span data-magnetic data-magnetic-strength="8">SOFTWARE ENGINEERING</span>
   </div>
 </main>
 
